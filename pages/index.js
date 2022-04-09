@@ -6,7 +6,7 @@ import styles from '../styles/home.module.css'
 export default function Home() {
   const { push: navigate } = useRouter()
   useEffect(() => {
-    navigate('/login')
+    navigate('/home')
   }, [navigate])
 
   return (
