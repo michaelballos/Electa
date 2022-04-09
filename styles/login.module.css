@@ -12,3 +12,10 @@
     font-weight: bold;
     margin-bottom: 1rem;
 }
+
+.text {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
