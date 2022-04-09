@@ -1,7 +1,5 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/login.module.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Head from 'next/head'
 import {
   Title,
   Input,
@@ -18,39 +16,8 @@ import {
 import { At, icon } from 'tabler-icons-react'
 import { useMutation } from 'react-query'
 
-const Register = () => {
-  const [opened, setOpened] = useState(false)
-
-  const mutation = useMutation(
-    'login',
-    () => {
-      return fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: '',
-          password: '',
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.error) {
-            throw new Error(res.error)
-          }
-          return res
-        })
-    },
-    {
-      onSuccess: (data) => {
-        console.log('got data', data)
-      },
-    }
-  )
-
+const Register = ({ opened, setOpened }) => {
   const theme = useMantineTheme()
-
   const secondaryColor =
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7]
 

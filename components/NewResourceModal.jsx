@@ -33,56 +33,42 @@ export default function NewResourceModal({
       description: '',
     },
     validate: {
-      name: (value) => /[a-zA-Z0-9 ]+/.test(value) ? null : 'Invalid name',
-      description: (value) => /[a-zA-Z0-9 ]+/.test(value) ? null : 'Invalid description',
+      name: (value) => (/[a-zA-Z0-9 ]+/.test(value) ? null : 'Invalid name'),
+      description: (value) =>
+        /[a-zA-Z0-9 ]+/.test(value) ? null : 'Invalid description',
     },
-  });
+  })
 
   return (
-    <Modal
-      opened={isOpen}
-      onClose={onClose}
-      title={title}
-    >
+    <Modal opened={isOpen} onClose={onClose} title={title}>
       <form
         onSubmit={form.onSubmit((values) => {
-          mutation.mutate(values);
-          onClose();
+          mutation.mutate(values)
+          onClose()
         })}
       >
         <TextInput
-          label="Name"
-          id="name"
+          label='Name'
+          id='name'
           {...form.getInputProps('name')}
           required
         />
         <Textarea
-          mt="sm"
-          placeholder="Description"
-          label="Description"
+          mt='sm'
+          placeholder='Description'
+          label='Description'
           required
           {...form.getInputProps('description')}
         />
-        <Group
-          align="space-between"
-          mt="md"
-        >
-          <Button
-            size="sm"
-            color="gray"
-            onClick={onClose}
-          >
+        <Group align='space-between' mt='md'>
+          <Button size='sm' color='gray' onClick={onClose}>
             Cancel
           </Button>
-          <Button
-            size="sm"
-            color="green"
-            type="submit"
-          >
+          <Button size='sm' color='green' type='submit'>
             {title}
           </Button>
         </Group>
       </form>
     </Modal>
-  );
+  )
 }
