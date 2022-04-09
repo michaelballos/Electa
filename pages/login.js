@@ -2,8 +2,37 @@ import styles from '../styles/login.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Head from 'next/head'
 import { Form, Button } from 'react-bootstrap'
+import { dehydrate, QueryClient, useMutation, useQuery } from 'react-query'
 
 const Login = () => {
+  const mutation = useMutation(
+    'login',
+    () => {
+      return fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: '',
+          password: '',
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.error) {
+            throw new Error(res.error)
+          }
+          return res
+        })
+    },
+    {
+      onSuccess: (data) => {
+        console.log('got data', data)
+      },
+    }
+  )
+
   return (
     <>
       <Head>
@@ -37,7 +66,7 @@ const Login = () => {
             <Form.Check type='checkbox' label='Remember Password' />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
+          <Button variant='primary' onClick={() => mutation.mutate()}>
             Submit
           </Button>
         </Form>
