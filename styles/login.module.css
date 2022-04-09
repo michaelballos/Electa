@@ -1,0 +1,9 @@
+.loginBtn {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btnbtn {
+    width: 6rem;
+}
