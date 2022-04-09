@@ -90,19 +90,14 @@ function Graph({
   });
   
 
-  console.log(queryResults);
   const colors = new Array(roles.length).fill('blue').concat(new Array(candidates.length).fill('red'), new Array(qualifications.length).fill('green'));
 
-  console.log('parentWidth', parentWidth);
-  console.log('parentHeight', parentHeight);
   const width = parentWidth || 500;
   const height = parentWidth || 500;
 
   const centerSize = 20;
   const outerRadius = width/2;// - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
-
-  console.log('matrix', matrix);
 
   return (
     <svg width={width} height={height}>

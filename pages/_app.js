@@ -9,7 +9,7 @@ import Layout from '../components/Layout';
 
 
 export default function App({ Component, pageProps}) {
-  const [queryClient] = React.useState(() => new QueryClient())
+  const [queryClient] = React.useState(new QueryClient())
 
   return (
     <>

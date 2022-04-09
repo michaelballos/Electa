@@ -6,9 +6,10 @@ function TableComponent({ routeType }) {
   const { data, status } = useQuery({
     queryKey: `table-${routeType}`,
     queryFn: () =>
-      fetch(`/api/${routeType}`, { method: 'GET', headers: {} }).then((res) =>
-        res.json()
-      ),
+      {
+        return fetch(`/api/${routeType}`, { method: 'GET', headers: {} }).then((res) => res.json()
+        )
+      },
   })
 
   const content = useMemo(() => {
