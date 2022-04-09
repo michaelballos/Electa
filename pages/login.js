@@ -2,7 +2,7 @@ import styles from '../styles/login.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Head from 'next/head'
 import { Form, Button } from 'react-bootstrap'
-import { dehydrate, QueryClient, useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 
 const Login = () => {
   const mutation = useMutation(

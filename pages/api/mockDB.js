@@ -18,7 +18,7 @@ export const createCandidate = (
   name,
   description,
   roleIds,
-  qualificationIds,
+  qualificationIds
 ) => {
   db.data.candidates.push({
     id: `c${db.data.candidates.length + 1}`,
@@ -38,7 +38,7 @@ export const updateCandidate = (
   name,
   description,
   roleIds,
-  qualificationIds,
+  qualificationIds
 ) => {
   const candidate = db.data.candidates.find((candidate) => candidate.id === id)
   if (candidate) {
@@ -72,10 +72,16 @@ export const createRole = (name, description) => {
     updatedAt: null,
     deletedAt: null,
   })
-  return true;
+  return true
 }
 
-export const updateRole = (id, name, description, assignedCandidateIds, requiredQualificationIds) => {
+export const updateRole = (
+  id,
+  name,
+  description,
+  assignedCandidateIds,
+  requiredQualificationIds
+) => {
   const role = db.data.roles.find((role) => role.id === id)
   if (role) {
     role.name = name
@@ -109,8 +115,16 @@ export const createQualification = (name, description) => {
   })
 }
 
-export const updateQualification = (id, name, description, candidateIds, roleIds) => {
-  const qualification = db.data.qualifications.find((qualification) => qualification.id === id)
+export const updateQualification = (
+  id,
+  name,
+  description,
+  candidateIds,
+  roleIds
+) => {
+  const qualification = db.data.qualifications.find(
+    (qualification) => qualification.id === id
+  )
   if (qualification) {
     qualification.name = name
     qualification.description = description
@@ -123,7 +137,9 @@ export const updateQualification = (id, name, description, candidateIds, roleIds
 }
 
 export const deleteQualification = (id) => {
-  const qualification = db.data.qualifications.find((qualification) => qualification.id === id)
+  const qualification = db.data.qualifications.find(
+    (qualification) => qualification.id === id
+  )
   if (qualification) {
     qualification.deletedAt = new Date().toISOString()
     return true
@@ -131,4 +147,4 @@ export const deleteQualification = (id) => {
   return false
 }
 
-export default db;
+export default db
