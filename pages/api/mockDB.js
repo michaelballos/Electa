@@ -72,6 +72,7 @@ export const createRole = (name, description) => {
     updatedAt: null,
     deletedAt: null,
   })
+  return true;
 }
 
 export const updateRole = (id, name, description, assignedCandidateIds, requiredQualificationIds) => {
@@ -82,6 +83,7 @@ export const updateRole = (id, name, description, assignedCandidateIds, required
     role.updatedAt = new Date().toISOString()
     role.assignedCandidateIds = assignedCandidateIds
     role.requiredQualificationIds = requiredQualificationIds
+    role.updatedAt = new Date().toISOString()
     return true
   }
   return false
@@ -107,8 +109,26 @@ export const createQualification = (name, description) => {
   })
 }
 
+export const updateQualification = (id, name, description, candidateIds, roleIds) => {
+  const qualification = db.data.qualifications.find((qualification) => qualification.id === id)
+  if (qualification) {
+    qualification.name = name
+    qualification.description = description
+    qualification.candidateIds = candidateIds
+    qualification.roleIds = roleIds
+    qualification.updatedAt = new Date().toISOString()
+    return true
+  }
+  return false
+}
 
-
-
+export const deleteQualification = (id) => {
+  const qualification = db.data.qualifications.find((qualification) => qualification.id === id)
+  if (qualification) {
+    qualification.deletedAt = new Date().toISOString()
+    return true
+  }
+  return false
+}
 
 export default db;

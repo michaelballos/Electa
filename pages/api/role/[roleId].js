@@ -1,4 +1,4 @@
-import { deleteCandidate, getResourceById, updateCandidate } from '../mockDB'
+import { deleteRole, getResourceById, updateRole } from '../mockDB'
 
 export default function handler(req, res) {
   const { candidateId } = req.query
@@ -7,7 +7,7 @@ export default function handler(req, res) {
   }
   if (req.method === 'PUT') {
     const { name, description, roleIds, qualificationIds } = req.body
-    const result = updateCandidate(candidateId, name, description, roleIds, qualificationIds);
+    const result = updateRole(candidateId, name, description, roleIds, qualificationIds);
     if (result) {
       return res.status(200).json({
         message: 'Successfully updated candidate',
@@ -18,7 +18,7 @@ export default function handler(req, res) {
     })
   }
   if (req.method === 'DELETE') {
-    const result = deleteCandidate(candidateId);
+    const result = deleteRole(candidateId);
     if (result) {
       return res.status(200).json({
         message: 'Successfully deleted candidate',
