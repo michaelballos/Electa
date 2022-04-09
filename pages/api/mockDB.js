@@ -1,8 +1,8 @@
 const db = {
   data: {
-    candidates: [],
-    roles: [],
-    qualifications: [],
+    candidates: [getLaid, femaleTouch, hunterBiden, weeknd, spiderman],
+    roles: [pussyEater, kissMeXoXo, stripper, bankRobber, senator],
+    qualifications: [fingering, masturbator, bigDick, bigToes, bigEyes],
   },
 }
 
@@ -18,7 +18,7 @@ export const createCandidate = (
   name,
   description,
   roleIds,
-  qualificationIds,
+  qualificationIds
 ) => {
   db.data.candidates.push({
     id: `c${db.data.candidates.length + 1}`,
@@ -38,7 +38,7 @@ export const updateCandidate = (
   name,
   description,
   roleIds,
-  qualificationIds,
+  qualificationIds
 ) => {
   const candidate = db.data.candidates.find((candidate) => candidate.id === id)
   if (candidate) {
@@ -74,7 +74,13 @@ export const createRole = (name, description) => {
   })
 }
 
-export const updateRole = (id, name, description, assignedCandidateIds, requiredQualificationIds) => {
+export const updateRole = (
+  id,
+  name,
+  description,
+  assignedCandidateIds,
+  requiredQualificationIds
+) => {
   const role = db.data.roles.find((role) => role.id === id)
   if (role) {
     role.name = name
@@ -107,8 +113,4 @@ export const createQualification = (name, description) => {
   })
 }
 
-
-
-
-
-export default db;
+export default db
