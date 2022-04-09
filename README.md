@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Electa Api
+
+## ![Jayhawk](https://hackku.org/mascot-unfilled.png) HackKU 2022 ![Jayhawk](https://hackku.org/mascot-filled.png)
+
+For our project as part of HackKU we are creating a designation application utilizing a custom-built API.
+
+Our application is responsible for delegating roles to individuals responsible for tasks based on user-designated constraints and weights.
+
+Joint Project between: @mkeleti  @michaelballos  @spigelli  @juanrios456
 
 ## Getting Started
 
