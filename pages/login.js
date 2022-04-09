@@ -13,6 +13,7 @@ import {
   useMantineTheme,
   Modal,
   TextInput,
+  Center,
 } from '@mantine/core'
 import { At, icon } from 'tabler-icons-react'
 import { useMutation } from 'react-query'
@@ -156,6 +157,17 @@ const Login = () => {
                 />
                 <Checkbox size='xs' label='Save Magic Phrase' />
               </Stack>
+              <Group>
+                <Center
+                  style={{
+                    width: '100%',
+                  }}
+                >
+                  <Button variant='subtle' size='md'>
+                    Register
+                  </Button>
+                </Center>
+              </Group>
             </Modal>
             <Group position='center'>
               <Button onClick={() => setOpened(true)}>Register</Button>
