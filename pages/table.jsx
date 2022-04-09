@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 import TableComponent from '../components/TableComponent'
-import { SegmentedControl } from '@mantine/core'
+import { SegmentedControl, Table } from '@mantine/core'
 /**
  * name
  * desc
@@ -28,24 +28,43 @@ function Tabs() {
 
   const rows = elements.map((element) => (
     <tr key={element.candidates}>
-      <td>{element.description}</td>
-      <td>{element.updatedAt}</td>
-      <td>{element.createdAt}</td>
+      <td> {element.description} </td> <td> {element.updatedAt} </td>{' '}
+      <td> {element.createdAt} </td>{' '}
     </tr>
   ))
 
   return (
     <>
-      <SegmentedControl
-        value={value}
-        onChange={setValue}
-        data={[
-          { label: 'Roles', value: 'react' },
-          { label: 'Qualifications', value: 'ng' },
-          { label: 'Candidates', value: 'vue' },
-        ]}
-      />
-      <TableComponent />
+      <Table>
+        <thead>
+          <tr>
+            <th> Names </th>
+            <th> Description </th>
+            <th> updatedAt </th> <th> createdAt </th>{' '}
+          </tr>{' '}
+          <tbody> {rows} </tbody>{' '}
+        </thead>{' '}
+      </Table>{' '}
+      <button
+        style={{
+          float: 'right',
+          padding: '5px 10px',
+          margin: '15px 0',
+          borderRadius: '5px',
+        }}
+      >
+        add{' '}
+      </button>{' '}
+      <button
+        style={{
+          float: 'right',
+          padding: '5px 10px',
+          margin: '15px 25px',
+          borderRadius: '5px',
+        }}
+      >
+        delete{' '}
+      </button>{' '}
     </>
   )
 }
