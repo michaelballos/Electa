@@ -1,6 +1,6 @@
 # Electa Api
 
-## ![Jayhawk](https://hackku.org/mascot-unfilled.png) HackKU 2022 ![Jayhawk](https://hackku.org/mascot-filled.png)
+## HackKU 2022
 
 For our project as part of HackKU we are creating a designation application utilizing a custom-built API.
 
