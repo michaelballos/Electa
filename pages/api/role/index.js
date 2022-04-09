@@ -2,12 +2,11 @@ import { createRole } from '../mockDB'
 
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    const { name, description, candidateIds, qualificationIds } = req.body
+    const { name, description } = req.body
+    console.log('req.body', req.body)
     if (
       !name ||
-      !description ||
-      !candidateIds ||
-      !qualificationIds
+      !description
     ) {
       return res.status(400).json({
         error: 'name, description, candidateIds, qualificationIds are required',

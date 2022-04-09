@@ -6,3 +6,39 @@ export default function handler(req, res) {
   }
   return res.status(405).end();
 }
+
+/**
+ * 
+ * 
+ * roles: [
+ *   {
+ *     id,
+ *     candidateId,   <<<<<
+ *     qualificationIds[],
+ *   }
+ *   {
+ *     id,
+ *     candidateId, <<<<<
+ *     qualificationIds[],
+ *   }
+ * ]
+ * candidate: [
+ *   {
+ *     id,
+ *     roleId, <<<<<
+ *     qualificationIds[],
+ *   }
+ *   {
+ *     id,
+ *     roleId, <<<<<
+ *     qualificationIds[],
+ *   }
+ * ]
+ * qualifications: [
+ *   {
+ *     id,
+ *     roleIds[],
+ *     candidateIds[],
+ *   }
+ * ]
+ */
