@@ -56,7 +56,7 @@ function TableComponent() {
   ))
 
   return (
-    <Table>
+    <Table className='tableContainer'>
       <thead>
         <tr>
           <th>Name</th>

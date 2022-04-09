@@ -1,5 +1,5 @@
-import { SegmentedControl } from '@mantine/core'
 import TableComponent from '../components/TableComponent'
+import AddQualification from '../components/Tabs'
 /**
  * name
  * desc
@@ -7,8 +7,13 @@ import TableComponent from '../components/TableComponent'
  * createdAt
  */
 
-function Tabs() {
-  return <TableComponent />
+function TablePage() {
+  return (
+    <div className='tablePageContainer'>
+      <TableComponent />
+      <AddQualification />
+    </div>
+  )
 }
 
-export default Tabs
+export default TablePage
