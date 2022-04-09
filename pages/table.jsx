@@ -1,5 +1,5 @@
 import TableComponent from '../components/TableComponent'
-import AddQualification from '../components/Tabs'
+import AddQualification from '../components/AddQualification'
 /**
  * name
  * desc
