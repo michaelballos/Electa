@@ -2,7 +2,7 @@ import TableComponent from './TableComponent'
 import AddQualification from './AddQualification'
 import Tabs from './Tabs'
 import { useMemo, useState } from 'react'
-import { Button } from '@mantine/core'
+import { Button, Group } from '@mantine/core'
 /**
  * name
  * desc
@@ -26,9 +26,13 @@ function TableWrapper() {
   return (
     <div className='tablePageContainer'>
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <Button color='green' size='lg' onClick={currentButtonCallback}>
-        {currentButtonText}
-      </Button>
+      <Group
+        position="right"
+      >
+        <Button color='green' size='sm' onClick={currentButtonCallback}>
+          {currentButtonText}
+        </Button>
+      </Group>
     </div>
   )
 }
