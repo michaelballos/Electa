@@ -3,11 +3,17 @@ import { deleteCandidate, getResourceById, updateCandidate } from '../mockDB'
 export default function handler(req, res) {
   const { candidateId } = req.query
   if (req.method === 'GET') {
-    return res.status(200).json(getResourceById('candidates', candidateId));
+    return res.status(200).json(getResourceById('candidates', candidateId))
   }
   if (req.method === 'PUT') {
     const { name, description, roleIds, qualificationIds } = req.body
-    const result = updateCandidate(candidateId, name, description, roleIds, qualificationIds);
+    const result = updateCandidate(
+      candidateId,
+      name,
+      description,
+      roleIds,
+      qualificationIds
+    )
     if (result) {
       return res.status(200).json({
         message: 'Successfully updated candidate',
@@ -18,7 +24,7 @@ export default function handler(req, res) {
     })
   }
   if (req.method === 'DELETE') {
-    const result = deleteCandidate(candidateId);
+    const result = deleteCandidate(candidateId)
     if (result) {
       return res.status(200).json({
         message: 'Successfully deleted candidate',
