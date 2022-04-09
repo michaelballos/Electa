@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { SegmentedControl, Table } from '@mantine/core'
 import { useQuery } from 'react-query'
-
+import TableComponent from '../components/TableComponent'
+import { SegmentedControl } from '@mantine/core'
 /**
  * name
  * desc
@@ -11,14 +11,16 @@ import { useQuery } from 'react-query'
 
 function Tabs() {
   const [value, setValue] = useState('react')
+
   const { data, status } = useQuery(
     'candidates',
     fetch('/api/candidates').then((res) => res.json())
   )
+
   const elements = [
     {
-      candidates: data.candidates,
-      description: data.description,
+      candidates: 'Candidates',
+      description: 'Description',
       updatedAt: 'updatedAt',
       createdAt: 'Carbon',
     },
@@ -43,17 +45,7 @@ function Tabs() {
           { label: 'Candidates', value: 'vue' },
         ]}
       />
-      <Table>
-        <thead>
-          <tr>
-            <th>Names</th>
-            <th>Description</th>
-            <th>updatedAt</th>
-            <th>createdAt</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
+      <TableComponent />
     </>
   )
 }
