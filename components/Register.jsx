@@ -20,6 +20,33 @@ const Register = ({ opened, setOpened }) => {
   const theme = useMantineTheme()
   const secondaryColor =
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7]
+  const mutation = useMutation(
+    'login',
+    () => {
+      return fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: '',
+          password: '',
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.error) {
+            throw new Error(res.error)
+          }
+          return res
+        })
+    },
+    {
+      onSuccess: (data) => {
+        console.log('got data', data)
+      },
+    }
+  )
 
   return (
     <div className={styles.loginContainer}>

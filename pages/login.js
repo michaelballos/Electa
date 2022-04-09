@@ -47,6 +47,7 @@ const Login = () => {
       },
     }
   )
+
   const theme = useMantineTheme()
   const secondaryColor =
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7]
@@ -89,7 +90,7 @@ const Login = () => {
               icon={
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  class='icon icon-tabler icon-tabler-lock-off'
+                  className='icon icon-tabler icon-tabler-lock-off'
                   width='15'
                   height='15'
                   viewBox='0 0 24 24'
