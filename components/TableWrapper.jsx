@@ -1,6 +1,6 @@
-import TableComponent from '../components/TableComponent'
-import AddQualification from '../components/AddQualification'
-import Tabs from '../components/Tabs'
+import TableComponent from './TableComponent'
+import AddQualification from './AddQualification'
+import Tabs from './Tabs'
 import { useMemo, useState } from 'react'
 import { Button } from '@mantine/core'
 /**
@@ -10,7 +10,7 @@ import { Button } from '@mantine/core'
  * createdAt
  */
 
-function TablePage() {
+function TableWrapper() {
   const [activeTab, setActiveTab] = useState(0)
   const buttonTexts = ['Create Role', 'Add Candidate', 'Define Qualifications']
 
@@ -33,4 +33,4 @@ function TablePage() {
   )
 }
 
-export default TablePage
+export default TableWrapper;

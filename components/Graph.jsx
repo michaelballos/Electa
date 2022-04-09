@@ -27,7 +27,7 @@ export default function Graph() {
       },
     ],
   );
-  
+
   const hasData = useMemo(() => {
     return queryResults[0].isSuccess && queryResults[1].isSuccess && queryResults[2].isSuccess;
   }, [queryResults]);
@@ -39,66 +39,6 @@ export default function Graph() {
       setQualifications(queryResults[2].data);
     }
   }, [hasData, queryResults]);
-
-
-  // const roles = [
-  //   {
-  //     id: 'r1',
-  //     candidateIds: ['c1', 'c2'],
-  //     qualificationIds: ['q1'],
-  //   },
-  //   {
-  //     id: 'r2',
-  //     candidateIds: ['c4'],
-  //     qualificationIds: ['q2'],
-  //   },
-  //   {
-  //     id: 'r3',
-  //     candidateIds: [],
-  //     qualificationIds: ['q1'],
-  //   },
-  //   {
-  //     id: 'r4',
-  //     candidateIds: ['c1', 'c3'],
-  //     qualificationIds: [],
-  //   },
-  // ];
-
-  // const candidates = [
-  //   {
-  //     id: 'c1',
-  //     roleIds: ['r1'],
-  //     qualificationIds: ['q1', 'q2'],
-  //   },
-  //   {
-  //     id: 'c2',
-  //     roleIds: ['r1'],
-  //     qualificationIds: ['q1'],
-  //   },
-  //   {
-  //     id: 'c3',
-  //     roleIds: ['r4'],
-  //     qualificationIds: [],
-  //   },
-  //   {
-  //     id: 'c4',
-  //     roleIds: ['r2'],
-  //     qualificationIds: ['q2'],
-  //   },
-  // ];
-
-  // const qualifications = [
-  //   {
-  //     id: 'q1',
-  //     candidateIds: ['c1', 'c2'],
-  //     roleIds: ['r1', 'r3'],
-  //   },
-  //   {
-  //     id: 'q2',
-  //     candidateIds: ['c1', 'c4'],
-  //     roleIds: ['r2'],
-  //   },
-  // ];
 
   const n = roles.length + candidates.length + qualifications.length;
 
