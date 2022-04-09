@@ -169,7 +169,7 @@ const Login = () => {
                 </Center>
               </Group>
             </Modal>
-            <Group position='center'>
+            <Group>
               <Button onClick={() => setOpened(true)}>Register</Button>
             </Group>
           </Card>

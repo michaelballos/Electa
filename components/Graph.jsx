@@ -2,11 +2,15 @@ import {
   Chord, Ribbon
 } from '@visx/chord';
 import { Group } from '@visx/group';
+import withParentSize from '@visx/responsive/lib/enhancers/withParentSizeModern';
 import { Arc } from "@visx/shape";
 import { useEffect, useMemo, useState } from 'react';
 import { useQueries, useQuery } from 'react-query';
 
-export default function Graph() {
+function Graph({
+  parentWidth,
+  parentHeight,
+}) {
   const [roles, setRoles] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const [qualifications, setQualifications] = useState([]);
@@ -89,54 +93,55 @@ export default function Graph() {
   console.log(queryResults);
   const colors = new Array(roles.length).fill('blue').concat(new Array(candidates.length).fill('red'), new Array(qualifications.length).fill('green'));
 
-  const width = 1000;
-  let height = 1000;
+  console.log('parentWidth', parentWidth);
+  console.log('parentHeight', parentHeight);
+  const width = parentWidth || 500;
+  const height = parentWidth || 500;
+
   const centerSize = 20;
-  height -= 77;
-  const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
+  const outerRadius = width/2;// - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
 
   console.log('matrix', matrix);
 
   return (
-    <>
-      <h1>Graph</h1>
-     <svg width={width} height={height}>
-        <Group top={height / 2} left={width / 2}>
-          <Chord matrix={matrix} padAngle={0.05}>
-            {({ chords }) => (
-              <g>
-                {chords.groups.map((group, i) => (
-                  <Arc
-                    key={`key-${i}`}
-                    data={group}
-                    innerRadius={innerRadius}
-                    outerRadius={outerRadius}
-                    fill={colors[i]}
+    <svg width={width} height={height}>
+      <Group top={height / 2} left={width / 2}>
+        <Chord matrix={matrix} padAngle={0.05}>
+          {({ chords }) => (
+            <g>
+              {chords.groups.map((group, i) => (
+                <Arc
+                  key={`key-${i}`}
+                  data={group}
+                  innerRadius={innerRadius}
+                  outerRadius={outerRadius}
+                  fill={colors[i]}
+                  onClick={() => {
+                    if (events) alert(`${JSON.stringify(group)}`);
+                  }}
+                />
+              ))}
+              {chords.map((chord, i) => {
+                return (
+                  <Ribbon
+                    key={`ribbon-${i}`}
+                    chord={chord}
+                    radius={innerRadius}
+                    fill={colors[chord.target.index]}
+                    fillOpacity={0.75}
                     onClick={() => {
-                      if (events) alert(`${JSON.stringify(group)}`);
+                      if (events) alert(`${JSON.stringify(chord)}`);
                     }}
                   />
-                ))}
-                {chords.map((chord, i) => {
-                  return (
-                    <Ribbon
-                      key={`ribbon-${i}`}
-                      chord={chord}
-                      radius={innerRadius}
-                      fill={colors[chord.target.index]}
-                      fillOpacity={0.75}
-                      onClick={() => {
-                        if (events) alert(`${JSON.stringify(chord)}`);
-                      }}
-                    />
-                  );
-                })}
-              </g>
-            )}
-          </Chord>
-        </Group>
-      </svg>
-    </>
+                );
+              })}
+            </g>
+          )}
+        </Chord>
+      </Group>
+    </svg>
   );
 }
+
+export default withParentSize(Graph);
