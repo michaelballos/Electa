@@ -2,6 +2,17 @@ import styles from '../styles/login.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Head from 'next/head'
 import { Form, Button } from 'react-bootstrap'
+import { dehydrate, QueryClient, useQuery } from 'react-query'
+
+export async function getStaticProps(context) {
+
+
+const getLogin = () => {
+  const { data } = useQuery('login', () =>
+    fetch('/api/login', {
+
+
+}
 
 const Login = () => {
   return (
