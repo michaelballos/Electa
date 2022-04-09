@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ChevronRight, ChevronLeft } from 'tabler-icons-react'
 import {
   UnstyledButton,
@@ -12,6 +12,8 @@ import {
 
 export function User() {
   const theme = useMantineTheme()
+
+  const [opened, setOpened] = useState(false)
   return (
     <Box
       sx={{
