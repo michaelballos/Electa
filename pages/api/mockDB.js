@@ -1,8 +1,8 @@
 const db = {
   data: {
-    candidates: [getLaid, femaleTouch, hunterBiden, weeknd, spiderman],
-    roles: [pussyEater, kissMeXoXo, stripper, bankRobber, senator],
-    qualifications: [fingering, masturbator, bigDick, bigToes, bigEyes],
+    candidates: [],
+    roles: [],
+    qualifications: [],
   },
 }
 

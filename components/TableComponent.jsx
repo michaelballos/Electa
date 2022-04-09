@@ -1,74 +1,47 @@
 import { Table } from '@mantine/core'
+import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 
-function TableComponent() {
-  const { data, status } = useQuery(
-    'candidates',
-    fetch('/api/candidates').then((res) => res.json())
-  )
+function TableComponent({ routeType }) {
+  const { data, status } = useQuery({
+    queryKey: `table-${routeType}`,
+    queryFn: () =>
+      fetch(`/api/${routeType}`, { method: 'GET', headers: {} }).then((res) =>
+        res.json()
+      ),
+  })
 
-  const elements = [
-    {
-      name: 6,
-      description: 12.011,
-      qualifications: 'C',
-      updatedAt: 'Carbon',
-      createdAt: 'Nitrogen',
-    },
-    {
-      name: 7,
-      description: 14.007,
-      qualifications: 'N',
-      updatedAt: 'Nitrogen',
-      createdAt: 'Nitrogen',
-    },
-    {
-      name: 39,
-      description: 88.906,
-      qualifications: 'Y',
-      updatedAt: 'Yttrium',
-      createdAt: 'Nitrogen',
-    },
-    {
-      name: 56,
-      description: 137.33,
-      qualifications: 'Ba',
-      updatedAt: 'Barium',
-      createdAt: 'Nitrogen',
-    },
-    {
-      name: 58,
-      description: 140.12,
-      qualifications: 'Ce',
-      updatedAt: 'Cerium',
-      createdAt: 'Nitrogen',
-    },
-  ]
-
-  const rows = elements.map((element) => (
-    <tr key={element.name}>
-      <td>{element.name}</td>
-      <td>{element.description}</td>
-      <td>{element.qualifications}</td>
-      <td>{element.updatedAt}</td>
-      <td>{element.createdAt}</td>
-    </tr>
-  ))
-
-  return (
-    <Table className='tableContainer'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Qualifications</th>
-          <th>updatedAt</th>
-          <th>createdAt</th>
+  const content = useMemo(() => {
+    if (status === 'success') {
+      if (data.length === 0) {
+        return <p>No data</p>
+      }
+      const columns = Object.keys(data[0])
+      const rows = data.map((element, index) => (
+        <tr key={element.id}>
+          {columns.map((column) => (
+            <td key={`${element.id}-${column}`}>{element[column]}</td>
+          ))}
         </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </Table>
-  )
+      ))
+
+      const tableHeaders = columns.map((column) => (
+        <th key={column}>{column}</th>
+      ))
+
+      return (
+        <Table>
+          <thead>
+            <tr>{tableHeaders}</tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      )
+    }
+    return 'Loading...'
+  }, [data, status])
+
+  return content
 }
 
 export default TableComponent
