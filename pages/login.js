@@ -77,10 +77,10 @@ const Login = () => {
               error=''
               label='Email'
               icon={<At size={14} color={secondaryColor} />}
-              required
             />
             <TextInput
               style={{
+                paddingTop: '0.4rem',
                 paddingRight: '0.2rem',
                 paddingLeft: '0.2rem',
               }}
@@ -106,14 +106,13 @@ const Login = () => {
                   <path d='M8 11v-3m.712 -3.278a4 4 0 0 1 7.288 2.278v4' />
                 </svg>
               }
-              required
             />
             <Register opened={opened} setOpened={setOpened} />
             <div className={styles.loginBtn}>
-              <Button className={styles.btnbtn}>Login</Button>
               <Button className={styles.btnbtn} onClick={() => setOpened(true)}>
                 Register
               </Button>
+              <Button className={styles.btnbtn}>Login</Button>
             </div>
           </Card>
         </div>

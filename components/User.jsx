@@ -12,8 +12,8 @@ import {
 
 export function User() {
   const theme = useMantineTheme()
-
   const [opened, setOpened] = useState(false)
+
   return (
     <Box
       sx={{
