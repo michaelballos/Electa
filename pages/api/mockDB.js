@@ -80,8 +80,6 @@ export const getResourceById = (resourceKey, id) => {
 export const createCandidate = (
   name,
   description,
-  roleIds,
-  qualificationIds
 ) => {
   db.data.candidates.push({
     id: `c${db.data.candidates.length + 1}`,
@@ -90,8 +88,8 @@ export const createCandidate = (
     createdAt: new Date().toISOString(),
     updatedAt: null,
     deletedAt: null,
-    roleIds,
-    qualificationIds,
+    roleIds: [],
+    qualificationIds: [],
   })
   return true
 }
@@ -100,15 +98,11 @@ export const updateCandidate = (
   id,
   name,
   description,
-  roleIds,
-  qualificationIds
 ) => {
   const candidate = db.data.candidates.find((candidate) => candidate.id === id)
   if (candidate) {
     candidate.name = name
     candidate.description = description
-    candidate.roleIds = roleIds
-    candidate.qualificationIds = qualificationIds
     candidate.updatedAt = new Date().toISOString()
     return true
   }
@@ -142,16 +136,11 @@ export const updateRole = (
   id,
   name,
   description,
-  assignedCandidateIds,
-  requiredQualificationIds
 ) => {
   const role = db.data.roles.find((role) => role.id === id)
   if (role) {
     role.name = name
     role.description = description
-    role.updatedAt = new Date().toISOString()
-    role.assignedCandidateIds = assignedCandidateIds
-    role.requiredQualificationIds = requiredQualificationIds
     role.updatedAt = new Date().toISOString()
     return true
   }
@@ -175,6 +164,8 @@ export const createQualification = (name, description) => {
     createdAt: new Date().toISOString(),
     updatedAt: null,
     deletedAt: null,
+    roleIds: [],
+    candidateIds: [],
   })
 }
 
@@ -182,8 +173,6 @@ export const updateQualification = (
   id,
   name,
   description,
-  candidateIds,
-  roleIds
 ) => {
   const qualification = db.data.qualifications.find(
     (qualification) => qualification.id === id
@@ -191,8 +180,6 @@ export const updateQualification = (
   if (qualification) {
     qualification.name = name
     qualification.description = description
-    qualification.candidateIds = candidateIds
-    qualification.roleIds = roleIds
     qualification.updatedAt = new Date().toISOString()
     return true
   }
@@ -209,5 +196,109 @@ export const deleteQualification = (id) => {
   }
   return false
 }
+
+// A delegation is a relationship between a candidate and a role.
+export const addDelegation = (candidateId, roleId) => {
+  const candidate = db.data.candidates.find(
+    (candidate) => candidate.id === candidateId
+  )
+  const role = db.data.roles.find((role) => role.id === roleId)
+  if (candidate && role) {
+    candidate.roleIds.push(roleId)
+    role.candidateIds.push(candidateId)
+    return true
+  }
+  return false
+}
+
+// An endorsement is a relationship between a candidate and a qualification.
+export const addEndorsement = (candidateId, qualificationId) => {
+  const candidate = db.data.candidates.find(
+    (candidate) => candidate.id === candidateId
+  )
+  const qualification = db.data.qualifications.find(
+    (qualification) => qualification.id === qualificationId
+  )
+  if (candidate && qualification) {
+    candidate.qualificationIds.push(qualificationId)
+    qualification.candidateIds.push(candidateId)
+    return true
+  }
+  return false
+}
+
+// A requirement is a relationship between a role and a qualification.
+export const addRequirement = (roleId, qualificationId) => {
+  const role = db.data.roles.find((role) => role.id === roleId)
+  const qualification = db.data.qualifications.find(
+    (qualification) => qualification.id === qualificationId
+  )
+  if (role && qualification) {
+    role.qualificationIds.push(qualificationId)
+    qualification.roleIds.push(roleId)
+    return true
+  }
+  return false
+}
+
+export const removeDelegation = (candidateId, roleId) => {
+  const candidate = db.data.candidates.find(
+    (candidate) => candidate.id === candidateId
+  )
+  const role = db.data.roles.find((role) => role.id === roleId)
+  if (candidate && role) {
+    const index = candidate.roleIds.indexOf(roleId)
+    if (index > -1) {
+      candidate.roleIds.splice(index, 1)
+    }
+    const index2 = role.candidateIds.indexOf(candidateId)
+    if (index2 > -1) {
+      role.candidateIds.splice(index2, 1)
+    }
+    return true
+  }
+  return false
+}
+
+export const removeEndorsement = (candidateId, qualificationId) => {
+  const candidate = db.data.candidates.find(
+    (candidate) => candidate.id === candidateId
+  )
+  const qualification = db.data.qualifications.find(
+    (qualification) => qualification.id === qualificationId
+  )
+  if (candidate && qualification) {
+    const index = candidate.qualificationIds.indexOf(qualificationId)
+    if (index > -1) {
+      candidate.qualificationIds.splice(index, 1)
+    }
+    const index2 = qualification.candidateIds.indexOf(candidateId)
+    if (index2 > -1) {
+      qualification.candidateIds.splice(index2, 1)
+    }
+    return true
+  }
+  return false
+}
+
+export const removeRequirement = (roleId, qualificationId) => {
+  const role = db.data.roles.find((role) => role.id === roleId)
+  const qualification = db.data.qualifications.find(
+    (qualification) => qualification.id === qualificationId
+  )
+  if (role && qualification) {
+    const index = role.qualificationIds.indexOf(qualificationId)
+    if (index > -1) {
+      role.qualificationIds.splice(index, 1)
+    }
+    const index2 = qualification.roleIds.indexOf(roleId)
+    if (index2 > -1) {
+      qualification.roleIds.splice(index2, 1)
+    }
+    return true
+  }
+  return false
+}
+
 
 export default db

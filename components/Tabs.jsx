@@ -14,7 +14,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
       </MantineTabs.Tab>
       <MantineTabs.Tab label='Candidates'>
         <Container size="xl">
-          <TableComponent routeType='roles' />
+          <TableComponent routeType='candidates' />
         </Container>
       </MantineTabs.Tab>
       <MantineTabs.Tab label='Qualifications'>

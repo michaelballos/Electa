@@ -2,12 +2,10 @@ import { createCandidate } from '../mockDB'
 
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    const { name, description, roleIds, qualificationIds } = req.body
+    const { name, description } = req.body
     if (
       !name ||
-      !description ||
-      !roleIds ||
-      !qualificationIds
+      !description
     ) {
       return res.status(400).json({
         error: 'name, description, roleIds, qualificationIds are required',
@@ -16,8 +14,6 @@ export default function handler(req, res) {
     const result = createCandidate(
       name,
       description,
-      roleIds,
-      qualificationIds,
     )
     if (result) {
       return res.status(201).json({
