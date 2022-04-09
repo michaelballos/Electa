@@ -14,6 +14,7 @@ import Graph from '../components/Graph'
 import { MainLinks } from '../components/MainLinks'
 import TableWrapper from '../components/TableWrapper'
 import { User } from '../components/User'
+import { useSpring, animated } from 'react-spring'
 
 /*
     <Box
@@ -60,6 +61,7 @@ export default function HomePage() {
         </Card>
       </Grid.Col>
       <Grid.Col md={5} lg={4} xl={3} sm={12}>
+
         <Stack>
           <Card shadow='sm'>
             <Title order={3}>System Map</Title>
@@ -69,6 +71,7 @@ export default function HomePage() {
             <Title order={3}>Current Usage</Title>
           </Card>
         </Stack>
+
       </Grid.Col>
     </Grid>
   )

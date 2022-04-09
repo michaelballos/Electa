@@ -1,8 +1,15 @@
 import { Table } from '@mantine/core'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
+import DetailsDrawer from './DetailsDrawer'
+
+// function that removes the last character from a string
+const removeLastChar = (str) => str.slice(0, -1)
 
 function TableComponent({ routeType }) {
+  const [focusedId, setFocusedId] = useState(null)
+  const [opened, setOpened] = useState(false)
+
   const { data, status } = useQuery({
     queryKey: `table-${routeType}`,
     queryFn: () =>
@@ -12,37 +19,53 @@ function TableComponent({ routeType }) {
       },
   })
 
-  const content = useMemo(() => {
-    if (status === 'success') {
-      if (data.length === 0) {
-        return <p>No data</p>
-      }
-      const columns = Object.keys(data[0])
-      const rows = data.map((element, index) => (
-        <tr key={element.id}>
-          {columns.map((column) => (
-            <td key={`${element.id}-${column}`}>{element[column]}</td>
-          ))}
-        </tr>
-      ))
+  console.log(data);
 
-      const tableHeaders = columns.map((column) => (
-        <th key={column}>{column}</th>
-      ))
-
-      return (
-        <Table>
-          <thead>
-            <tr>{tableHeaders}</tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </Table>
-      )
-    }
-    return 'Loading...'
-  }, [data, status])
-
-  return content
+  return (
+    <>
+      {status === 'success' ? (
+        <>
+          {data.length === 0 ? (
+            <p>No resources found</p>
+          ) : (
+            <Table>
+              <thead>
+                <tr>
+                  {Object.keys(data[0]).map((column) => (
+                    <th key={column}>{column}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((element, index) => (
+                  <tr
+                    key={element.id}
+                    onClick={() => {
+                      setOpened(true);
+                      setFocusedId(element.id);
+                    }}
+                  >
+                    {Object.keys(data[0]).map((column) => (
+                      <td key={`${element.id}-${column}`}>{element[column]}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+      <DetailsDrawer
+        type={removeLastChar(routeType)}
+        id={focusedId}
+        setFocusedId={setFocusedId}
+        opened={opened}
+        setOpened={setOpened}
+      />
+    </>
+  );
 }
 
 export default TableComponent
