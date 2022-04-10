@@ -6,6 +6,21 @@ import withParentSize from '@visx/responsive/lib/enhancers/withParentSizeModern'
 import { Arc } from "@visx/shape";
 import { useEffect, useMemo, useState } from 'react';
 import { useQueries, useQuery } from 'react-query';
+import { scaleOrdinal } from "@visx/scale";
+import { LinearGradient } from "@visx/gradient";
+import { DEFAULT_THEME } from '@mantine/core';
+
+const pink = "#ff2fab";
+const orange = "#ffc62e";
+const purple = "#dc04ff";
+const purple2 = "#7324ff";
+const red = "#d04376";
+const green = "#52f091";
+const blue = "#04a6ff";
+const lime = "#00ddc6";
+
+export const background = '#3b6978';
+export const background2 = '#204051';
 
 function Graph({
   parentWidth,
@@ -31,6 +46,16 @@ function Graph({
       },
     ],
   );
+
+  const color = scaleOrdinal({
+    domain: [0, 1, 2, 3],
+    range: [
+      "url(#gpinkorange)",
+      "url(#gpurplered)",
+      "url(#gpurplegreen)",
+      "url(#gbluelime)"
+    ]
+  });
 
   const hasData = useMemo(() => {
     return queryResults[0].isSuccess && queryResults[1].isSuccess && queryResults[2].isSuccess;
@@ -88,19 +113,50 @@ function Graph({
       }
     });
   });
-  
 
-  const colors = new Array(roles.length).fill('blue').concat(new Array(candidates.length).fill('red'), new Array(qualifications.length).fill('green'));
+
+  const colors = new Array(roles.length).fill(color(2)).concat(
+    new Array(candidates.length).fill(color(0)),
+    new Array(qualifications.length).fill(color(3))
+  );
 
   const width = parentWidth || 500;
   const height = parentWidth || 500;
 
   const centerSize = 20;
-  const outerRadius = width/2;// - (centerSize + 10);
+  const outerRadius = width/2 - (centerSize);
   const innerRadius = outerRadius - centerSize;
 
   return (
     <svg width={width} height={height}>
+      <LinearGradient
+        id="gpinkorange"
+        from={pink}
+        to={orange}
+        vertical={false}
+      />
+      <LinearGradient
+        id="gpurplered"
+        from={purple}
+        to={red}
+        vertical={false}
+      />
+      <LinearGradient
+        id="gpurplegreen"
+        from={purple2}
+        to={green}
+        vertical={false}
+      />
+      <LinearGradient id="gbluelime" from={blue} to={lime} vertical={false} />
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill="url(#area-background-gradient)"
+        rx={14}
+      />
+      <LinearGradient id="area-background-gradient" from={background} to={background2} />
       <Group top={height / 2} left={width / 2}>
         <Chord matrix={matrix} padAngle={0.05}>
           {({ chords }) => (
