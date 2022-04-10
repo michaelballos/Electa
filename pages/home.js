@@ -7,9 +7,13 @@ import {
   Navbar,
   Stack,
   Text as MantineText,
+  Multiselect,
   Grid,
+  Space,
 } from '@mantine/core'
 import { Card, Group } from '@mantine/core'
+import withParentSize from '@visx/responsive/lib/enhancers/withParentSizeModern'
+import Chart from '../components/Chart'
 import Graph from '../components/Graph'
 import { MainLinks } from '../components/MainLinks'
 import TableWrapper from '../components/TableWrapper'
@@ -60,6 +64,7 @@ export default function HomePage() {
         </Card>
       </Grid.Col>
       <Grid.Col md={5} lg={4} xl={3} sm={12}>
+
         <Stack>
           <Card shadow='sm'>
             <Title order={3}>System Map</Title>
@@ -67,9 +72,26 @@ export default function HomePage() {
           </Card>
           <Card shadow='sm'>
             <Title order={3}>Current Usage</Title>
+            <ChartWrapper />
           </Card>
         </Stack>
+
       </Grid.Col>
     </Grid>
   )
 }
+
+const ChartWrapper = withParentSize(
+  ({
+    parentWidth,
+  }) => {
+    return (
+      <div style={{ marginTop: '10px' }}>
+        <Chart
+          width={parentWidth}
+          height={parentWidth}
+        />
+      </div>
+    );
+  }
+)

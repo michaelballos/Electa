@@ -1,17 +1,31 @@
-import { Button, Group, Modal, Textarea, TextInput } from '@mantine/core'
-import { useForm } from '@mantine/form'
-import { useMutation } from 'react-query'
+import { Button, Group, Modal, Textarea, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { useMutation, useQueryClient } from 'react-query';
 
-export default function NewResourceModal({ isOpen, onClose, type, title }) {
-  const mutation = useMutation((body) => {
-    fetch(`/api/${type}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
-  })
+export default function NewResourceModal({
+  isOpen,
+  onClose,
+  type,
+  title,
+}) {
+  const client = useQueryClient();
+  const mutation = useMutation(
+    async (body) => {
+      await fetch(`/api/${type}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+    },
+    {
+      onSuccess: () => {
+        client.refetchQueries();
+        onClose();
+      }
+    }
+  );
 
   const form = useForm({
     initialValues: {
