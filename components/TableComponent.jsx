@@ -28,7 +28,7 @@ function TableComponent({ routeType }) {
           {data.length === 0 ? (
             <p>No resources found</p>
           ) : (
-            <Table>
+            <Table highlightOnHover>
               <thead>
                 <tr>
                   {Object.keys(data[0]).map((column) => (
