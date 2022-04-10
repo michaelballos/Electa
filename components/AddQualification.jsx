@@ -1,19 +1,23 @@
 import { useState } from 'react'
-import {
-    Popover,
-    Text,
-    TextInput,
-    Button,
-    Image,
-    MultiSelect,
-} from '@mantine/core'
+import { Autocomplete, Input, Button, Card, MultiSelect } from '@mantine/core'
 import styles from '../styles/addQual.module.css'
-import MultiSelec from './MultiSelect'
+import MultiSelector from './MultiSelector'
 
 const AddQualification = () => {
-    const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(false)
 
-    return <MultiSelect / >
+  return (
+    <Card>
+      <MultiSelector />
+      <Input
+        sizw='xl'
+        placeholder='Description'
+        style={{
+          height: '7rem',
+        }}
+      />
+    </Card>
+  )
 }
 
 export default AddQualification
