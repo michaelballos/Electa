@@ -35,12 +35,6 @@ export default function DetailsDrawer({
       padding="md"
       onClose={handleClose}
     >
-      {/* <MultiSelect
-      data={name}
-      order={3}
-      label="Select Qualification"
-      placeholder="Pick all that you like"
-    /> */}
       {status === 'success' ? (
         <Stack align="stretch" spacing="md">
           <DetailsEditForm

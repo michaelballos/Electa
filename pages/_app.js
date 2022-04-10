@@ -27,7 +27,7 @@ export default function App({ Component, pageProps}) {
           withNormalizeCSS
           theme={{
             /** Put your mantine theme override here */
-            colorScheme: 'light',
+            colorScheme: 'dark',
           }}
         >
           <Hydrate state={pageProps.dehydratedState}>
