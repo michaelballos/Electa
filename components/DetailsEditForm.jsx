@@ -44,7 +44,7 @@ export default function DetailsEditForm({
         mutation.mutate(values)
       })}
     >
-      <Title order={5}>Attributes</Title>
+      <Title order={4}>Attributes</Title>
       <TextInput
         label='Name'
         id='name'
