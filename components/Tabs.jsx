@@ -46,7 +46,7 @@ const tabs = tabObjects.map((tab) => {
           routeType={route}
            />
         </Container>
-      </>
+       </>
       )
 })
 

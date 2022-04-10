@@ -1,11 +1,8 @@
 import {
   AppShell,
-  Box,
-  Divider,
   Header,
   Title,
   Navbar,
-  Stack,
   Text as MantineText,
   Code,
   Group,
@@ -14,7 +11,6 @@ import {
   createStyles,
 } from '@mantine/core'
 import { MarkGithubIcon } from '@primer/octicons-react'
-import { BrandGithub } from 'tabler-icons-react'
 import { MainLinks } from './MainLinks'
 import { User } from './User'
 
