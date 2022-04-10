@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Card, Button, Center } from '@mantine/core'
+import { Card, Center } from '@mantine/core'
 import Register from '../components/Register'
 import LoginUI from '../components/LoginUI'
 import LoginButtons from '../components/LoginButtons'
 
 /**
- * the login page
- * @returns {React.ReactElement} Login - Login route and register form
+ * the login page and register form
+ * @returns {React.ReactElement} Login - login route
  */
 const Login = () => {
   const [opened, setOpened] = useState(false)
