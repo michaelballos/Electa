@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <Grid>
-      <Grid.Col md={7} lg={8} xl={9} sm={12}>
+      <Grid.Col md={7} lg={8} xl={8} sm={12}>
         <Card
           shadow='sm'
           sx={{
@@ -24,7 +24,7 @@ export default function HomePage() {
           <TableWrapper onClick={openSesame} />
         </Card>
       </Grid.Col>
-      <Grid.Col md={5} lg={4} xl={3} sm={12}>
+      <Grid.Col md={5} lg={4} xl={4} sm={12}>
         <Stack>
           <Card shadow='sm'>
             <Title order={3}>System Map</Title>

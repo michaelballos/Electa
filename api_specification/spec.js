@@ -1,11 +1,60 @@
 export const electaSpec = {
   openapi: '3.0.2',
-  info: { title: 'API Title', version: '1.0' },
+  info: { title: 'Electa API', version: '1.0' },
   servers: [
     { url: 'http://localhost:3000/api' },
   ],
   paths:
   {
+    '/possibleDelegations': {
+      post: {
+        summary: 'Get possible delegations for a candidate',
+        description: 'Returns all roles for the given candidate where the roles qualifications are a subset of the candidate\'s qualifications',
+        parameters: [
+          {
+            name: 'id',
+            in: 'body',
+            description: 'The id of the candidate',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array',
+                  items: {
+                    '$ref': '#/components/schemas/Role',
+                  },
+                },
+              },
+            },
+          },
+          404: {
+            description: 'Candidate not found',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    error: {
+                      type: 'string',
+                    },
+                  },
+                },
+
+              },
+            },
+          },
+        },
+      },
+    },
+    
     '/login':
     {
       post:
