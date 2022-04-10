@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button, Center } from '@mantine/core'
+import { Card, Button, Center, Container, Title } from '@mantine/core'
 import Register from '../components/Register'
 import LoginUI from '../components/LoginUI'
 import LoginButtons from '../components/LoginButtons'
@@ -7,7 +7,13 @@ import LoginButtons from '../components/LoginButtons'
 const Login = () => {
   const [opened, setOpened] = useState(false)
   return (
-    <>
+    <Container
+      sx={(theme) => ({
+        backgroundColor: theme.colors.dark[7],
+      })}
+      fluid
+      style={{ height: '100vh' }}
+    >
       <Center
         style={{
           width: '100%',
@@ -20,14 +26,17 @@ const Login = () => {
             margin: 'auto',
           }}
         >
-          <Card shadow='sm' p='lg'>
+          <Card size="lg" shadow='xl' p='lg'>
+            <Title order={2}>
+              Login
+            </Title>
             <LoginUI />
             <Register opened={opened} setOpened={setOpened} />
             <LoginButtons opened={opened} setOpened={setOpened} />
           </Card>
         </div>
       </Center>
-    </>
+    </Container>
   )
 }
 

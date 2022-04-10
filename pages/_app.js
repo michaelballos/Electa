@@ -22,9 +22,13 @@ export default function App({ Component, pageProps}) {
           }}
         >
           <Hydrate state={pageProps.dehydratedState}>
-            <Layout>
+            {Component.name !== 'Login' ? (
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            ) : (
               <Component {...pageProps} />
-            </Layout>
+            )}
           </Hydrate>
         </MantineProvider>
       </QueryClientProvider>
