@@ -16,9 +16,7 @@ const buttonTexts = ['Create Role', 'Add Candidate', 'Define Qualifications']
 
 function TableWrapper() {
   const [activeTab, setActiveTab] = useState(0)
-
   const [open, setOpen] = useState(false)
-
   // This will have multiple calls to mutation.mutate()
 
   const currentButtonText = useMemo(() => buttonTexts[activeTab], [activeTab])
