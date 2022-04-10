@@ -10,6 +10,7 @@ import LoginButtons from '../components/LoginButtons'
  */
 const Login = () => {
   const [opened, setOpened] = useState(false)
+
   return (
     <Center
       style={{
