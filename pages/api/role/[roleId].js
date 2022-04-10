@@ -1,13 +1,4 @@
-<<<<<<< Updated upstream
 import { deleteRole, getResourceById, updateRole } from '../mockDB'
-=======
-import {
-  getResourceById,
-  updateQualification,
-  deleteRole,
-  updateRole,
-} from '../mockDB'
->>>>>>> Stashed changes
 
 export default function handler(req, res) {
   const { roleId } = req.query

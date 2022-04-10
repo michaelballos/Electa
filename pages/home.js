@@ -17,8 +17,6 @@ import Chart from '../components/Chart'
 import Graph from '../components/Graph'
 import { MainLinks } from '../components/MainLinks'
 import TableWrapper from '../components/TableWrapper'
-import { User } from '../components/User'
-import DelegateDrawer from '../components/DelegateDrawer'
 import { useState } from 'react'
 
 /*
