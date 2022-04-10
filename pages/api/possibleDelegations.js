@@ -8,12 +8,9 @@ import { addDelegation, removeDelegation, getAllOfResource, getResourceById } fr
  */
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    const { id } = req.body;
-    if (!candidateId) {
-      return res.status(400).json({
-        error: 'candidateId and roleId are required',
-      });
-    }
+    const { id } = JSON.parse(req.body);
+    console.log(req.body);
+    console.log(id);
     const candidate = getResourceById('candidates', id);
     if (!candidate) {
       return res.status(404).json({
@@ -27,6 +24,7 @@ export default function handler(req, res) {
           return false;
         }
       });
+      return true;
     })
     return res.status(200).json(possibleDelegations);
   }

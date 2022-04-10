@@ -2,8 +2,12 @@ import { Container, MultiSelect, Loader, Button, Center, Drawer, Group, Title, S
 import { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Trash, Wand } from 'tabler-icons-react';
+import DelegationModal from './DelegationModal';
 import DetailsEditForm from './DetailsEditForm';
 import QualificationsSelect from './QualificationsSelect';
+
+// function that takes a string and capitalizes the first letter
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export default function DetailsDrawer({
   type,
@@ -37,6 +41,9 @@ export default function DetailsDrawer({
       size="xl"
       padding="md"
       onClose={handleClose}
+      title={
+        <Title order={2}>Details for {capitalize(type)}</Title>
+      }
     >
       {status === 'success' ? (
         <Stack align="stretch" spacing="md">
@@ -45,38 +52,40 @@ export default function DetailsDrawer({
             type={type}
           />
           <Stack spacing="xs">
-            <Title order={5}>Actions</Title>
+            <Title order={4}>Actions</Title>
 
             <QualificationsSelect
               type={type}
               associationId={id}
             />
 
-            {type === 'candidates' && (
-              <>
+            {type === 'candidate' && (
+              <Stack>
                 <Text size="sm">
                   Find the potential roles for this candidate?
                 </Text>
                 <Button
-                  color="red"
-                  icon={<Wand size={16} />}
+                  color="blue"
+                  leftIcon={<Wand size={16} />}
                   onClick={() => {setDelegationModalOpen(true)}}
                 >
                   Review Potential Delegations
                 </Button>
-              </>
+              </Stack>
             )}
 
-            <Text size="sm">
-              Delete this resource?
-            </Text>
-            <Button
-              color="red"
-              icon={<Trash size={16} />}
-              onClick={() => { }}
-            >
-              Delete
-            </Button>
+            <Stack>
+              <Text size="sm">
+                Delete this resource?
+              </Text>
+              <Button
+                color="red"
+                leftIcon={<Trash size={16} />}
+                onClick={() => { }}
+              >
+                Delete
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
       ) : (
@@ -84,6 +93,11 @@ export default function DetailsDrawer({
           <Loader />
         </Center>
       )}
+      <DelegationModal
+        opened={delegationModalOpen}
+        onClose={() => { setDelegationModalOpen(false) }}
+        id={id}
+      />
     </Drawer>
   );
 }
