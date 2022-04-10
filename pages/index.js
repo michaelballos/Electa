@@ -9,6 +9,13 @@ export default function Home() {
     navigate('/home')
   }, [navigate])
 
+  const cors = async (req, res) => {
+    const { method } = req
+    if (method === 'OPTIONS') {
+      return res.status(200).send('YOGABAGABA')
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>

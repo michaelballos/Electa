@@ -6,8 +6,6 @@ import Head from 'next/head'
 import { MantineProvider } from '@mantine/core'
 import Layout from '../components/Layout'
 
-
-
 export default function App({ Component, pageProps}) {
   const [queryClient] = React.useState(new QueryClient())
 
