@@ -4,30 +4,32 @@ import Register from '../components/Register'
 import LoginUI from '../components/LoginUI'
 import LoginButtons from '../components/LoginButtons'
 
+/**
+ * the login page
+ * @returns {React.ReactElement} Login - Login route and register form
+ */
 const Login = () => {
   const [opened, setOpened] = useState(false)
   return (
-    <>
-      <Center
+    <Center
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      <div
         style={{
-          width: '100%',
-          height: '100%',
+          width: 340,
+          margin: 'auto',
         }}
       >
-        <div
-          style={{
-            width: 340,
-            margin: 'auto',
-          }}
-        >
-          <Card shadow='sm' p='lg'>
-            <LoginUI />
-            <Register opened={opened} setOpened={setOpened} />
-            <LoginButtons opened={opened} setOpened={setOpened} />
-          </Card>
-        </div>
-      </Center>
-    </>
+        <Card shadow='sm' p='lg'>
+          <LoginUI />
+          <Register opened={opened} setOpened={setOpened} />
+          <LoginButtons opened={opened} setOpened={setOpened} />
+        </Card>
+      </div>
+    </Center>
   )
 }
 
