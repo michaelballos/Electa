@@ -9,17 +9,11 @@ import {
   Text as MantineText,
   Multiselect,
   Grid,
-<<<<<<< HEAD
-  Card,
-  Group,
-} from '@mantine/core'
-=======
   Space,
 } from '@mantine/core'
 import { Card, Group } from '@mantine/core'
 import withParentSize from '@visx/responsive/lib/enhancers/withParentSizeModern'
 import Chart from '../components/Chart'
->>>>>>> 49ba645b246c22191270346da3a6ab655403f9c5
 import Graph from '../components/Graph'
 import { MainLinks } from '../components/MainLinks'
 import TableWrapper from '../components/TableWrapper'

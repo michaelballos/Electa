@@ -1,7 +1,7 @@
-import { Container, MultiSelect, Loader, Button, Center, Drawer, Group, Title, Stack, Box, Text } from '@mantine/core';
-import { useCallback } from 'react';
+import { Container, MultiSelect, Loader, Button, Center, Drawer, Group, Title, Stack, Box, Text, Modal } from '@mantine/core';
+import { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Trash } from 'tabler-icons-react';
+import { Trash, Wand } from 'tabler-icons-react';
 import DetailsEditForm from './DetailsEditForm';
 import QualificationsSelect from './QualificationsSelect';
 
@@ -12,7 +12,9 @@ export default function DetailsDrawer({
   opened,
   setOpened,
 }) {
-  console.log('DetailsDrawer', type, id);
+
+  const [delegationModalOpen, setDelegationModalOpen] = useState(false);
+
   const { data, status } = useQuery({
     queryKey: `details-${type}-${id}`,
     queryFn: async () => {
@@ -20,8 +22,9 @@ export default function DetailsDrawer({
     },
     enabled: id !== null,
   })
-  console.log('DetailsDrawer', data, status);
+
   const name = data?.name || '';
+
   const handleClose = useCallback(() => {
     setFocusedId(null);
     setOpened(false);
@@ -48,6 +51,21 @@ export default function DetailsDrawer({
               type={type}
               associationId={id}
             />
+
+            {type === 'candidates' && (
+              <>
+                <Text size="sm">
+                  Find the potential roles for this candidate?
+                </Text>
+                <Button
+                  color="red"
+                  icon={<Wand size={16} />}
+                  onClick={() => {setDelegationModalOpen(true)}}
+                >
+                  Review Potential Delegations
+                </Button>
+              </>
+            )}
 
             <Text size="sm">
               Delete this resource?
