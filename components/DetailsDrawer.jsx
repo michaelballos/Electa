@@ -1,8 +1,9 @@
-import { Container, Loader, Button, Center, Drawer, Group, Title, Stack, Box, Text } from '@mantine/core';
+import { Container, MultiSelect, Loader, Button, Center, Drawer, Group, Title, Stack, Box, Text } from '@mantine/core';
 import { useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { Trash } from 'tabler-icons-react';
 import DetailsEditForm from './DetailsEditForm';
+import QualificationsSelect from './QualificationsSelect';
 
 export default function DetailsDrawer({
   type,
@@ -20,7 +21,7 @@ export default function DetailsDrawer({
     enabled: id !== null,
   })
   console.log('DetailsDrawer', data, status);
-
+  const name = data?.name || '';
   const handleClose = useCallback(() => {
     setFocusedId(null);
     setOpened(false);
@@ -33,8 +34,13 @@ export default function DetailsDrawer({
       size="xl"
       padding="md"
       onClose={handleClose}
-      title={<Title order={3}>{data?.name || 'Details'}</Title>}
     >
+      {/* <MultiSelect
+      data={name}
+      order={3}
+      label="Select Qualification"
+      placeholder="Pick all that you like"
+    /> */}
       {status === 'success' ? (
         <Stack align="stretch" spacing="md">
           <DetailsEditForm
@@ -43,6 +49,11 @@ export default function DetailsDrawer({
           />
           <Stack spacing="xs">
             <Title order={5}>Actions</Title>
+
+            <QualificationsSelect
+              type={type}
+              associationId={id}
+            />
 
             <Text size="sm">
               Delete this resource?
@@ -64,3 +75,4 @@ export default function DetailsDrawer({
     </Drawer>
   );
 }
+//{data?.name || 'Details'

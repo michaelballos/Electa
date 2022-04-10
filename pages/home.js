@@ -7,6 +7,7 @@ import {
   Navbar,
   Stack,
   Text as MantineText,
+  Multiselect,
   Grid,
 } from '@mantine/core'
 import { Card, Group } from '@mantine/core'
@@ -14,7 +15,6 @@ import Graph from '../components/Graph'
 import { MainLinks } from '../components/MainLinks'
 import TableWrapper from '../components/TableWrapper'
 import { User } from '../components/User'
-import { useSpring, animated } from 'react-spring'
 
 /*
     <Box
