@@ -36,10 +36,7 @@ function TableWrapper() {
   return (
     <div className='tablePageContainer'>
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <Group
-        mt={3}
-        position="right"
-      >
+      <Group mt={3} position='right'>
         <Button color='green' size='sm' onClick={openModal}>
           {currentButtonText}
         </Button>
@@ -54,4 +51,4 @@ function TableWrapper() {
   )
 }
 
-export default TableWrapper;
+export default TableWrapper

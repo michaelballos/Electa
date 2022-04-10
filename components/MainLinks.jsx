@@ -48,7 +48,7 @@ function MainLink({ icon, color, label, url }) {
 }
 
 const data = [
-  { icon: <Home size={16} />, color: 'blue', label: 'Home', url: '/' },
+  { icon: <Home size={16} />, color: 'blue', label: 'Dashboard', url: '/' },
   {
     icon: <ArrowForward size={16} />,
     color: 'teal',
@@ -76,8 +76,8 @@ const data = [
       </svg>
     ),
     color: 'teal',
-    label: 'About',
-    url: '/about',
+    label: 'Docs',
+    url: '/docs',
   },
 ]
 
