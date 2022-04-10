@@ -27,8 +27,10 @@ export default function HomePage() {
       <Grid.Col md={5} lg={4} xl={3} sm={12}>
         <Stack>
           <Card shadow='sm'>
-            <Graph />
             <Title order={3}>System Map</Title>
+            <div style={{ marginTop: '10px' }}>
+              <Graph />
+            </div>
           </Card>
           <Card shadow='sm'>
             <Title order={3}>Current Usage</Title>
