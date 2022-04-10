@@ -4,8 +4,13 @@ import Register from '../components/Register'
 import LoginUI from '../components/LoginUI'
 import LoginButtons from '../components/LoginButtons'
 
+/**
+ * the login page and register form
+ * @returns {React.ReactElement} Login - login route
+ */
 const Login = () => {
   const [opened, setOpened] = useState(false)
+
   return (
     <Container
       sx={(theme) => ({
@@ -16,8 +21,8 @@ const Login = () => {
     >
       <Center
         style={{
-          width: '100%',
-          height: '100%',
+          width: 340,
+          margin: 'auto',
         }}
       >
         <div
