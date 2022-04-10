@@ -1,4 +1,17 @@
-import { Title, Stack, Text as MantineText, Grid, Card } from '@mantine/core'
+import {
+  AppShell,
+  Box,
+  Divider,
+  Header,
+  Title,
+  Navbar,
+  Stack,
+  Text as MantineText,
+  Multiselect,
+  Grid,
+  Space,
+} from '@mantine/core'
+import { Card, Group } from '@mantine/core'
 import withParentSize from '@visx/responsive/lib/enhancers/withParentSizeModern'
 import Chart from '../components/Chart'
 import Graph from '../components/Graph'
