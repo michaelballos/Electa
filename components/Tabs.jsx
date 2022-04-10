@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Container, SegmentedControl, Stack, Title } from '@mantine/core'
+import { Container } from '@mantine/core'
 import styles from '../styles/tabs.module.css'
 import { Tabs as MantineTabs } from '@mantine/core'
 import TableComponent from './TableComponent'
@@ -8,7 +8,7 @@ import TableComponent from './TableComponent'
  *  creates tabs for the table
  * @param {*} activeTab
  * @param {*} setActiveTab
- * @returns
+ * @returns {JSX.Element}
  */
 const Tabs = ({ activeTab, setActiveTab }) => {
   return (

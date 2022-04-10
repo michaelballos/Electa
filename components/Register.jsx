@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styles from '../styles/login.module.css'
+import { At } from 'tabler-icons-react'
+import { useMutation } from 'react-query'
 import {
-  Title,
-  Input,
-  Card,
   Button,
   Group,
   Stack,
@@ -13,15 +12,17 @@ import {
   TextInput,
   Center,
 } from '@mantine/core'
-import { At, icon } from 'tabler-icons-react'
-import { useMutation } from 'react-query'
 
 const Register = ({ opened, setOpened }) => {
   const theme = useMantineTheme()
   const secondaryColor =
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7]
+
+    const handleOpen() => setOpened(false)
+
   const mutation = useMutation(
     'login',
+
     () => {
       return fetch('/api/login', {
         method: 'POST',
@@ -32,8 +33,7 @@ const Register = ({ opened, setOpened }) => {
           email: '',
           password: '',
         }),
-      })
-        .then((res) => res.json())
+      }).then((res) => res.json())
         .then((res) => {
           if (res.error) {
             throw new Error(res.error)
@@ -53,7 +53,7 @@ const Register = ({ opened, setOpened }) => {
       <Modal
         centered
         opened={opened}
-        onClose={() => setOpened(false)}
+        onClose={}
         title='Register with us!'
       >
         <Group>
