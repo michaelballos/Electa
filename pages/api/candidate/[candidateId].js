@@ -1,15 +1,4 @@
-<<<<<<< Updated upstream
 import { deleteCandidate, getResourceById, updateCandidate } from '../mockDB'
-=======
-import {
-  deleteCandidate,
-  updateCandidate,
-  getResourceById,
-  updateQualification,
-  deleteRole,
-  updateRole,
-} from '../mockDB'
->>>>>>> Stashed changes
 
 export default function handler(req, res) {
   const { candidateId } = req.query
@@ -27,15 +16,11 @@ export default function handler(req, res) {
   }
   if (req.method === 'PUT') {
     const { name, description } = req.body
-<<<<<<< Updated upstream
     const result = updateCandidate(
       candidateId,
       name,
       description,
     )
-=======
-    const result = updateRole(candidateId, name, description)
->>>>>>> Stashed changes
     if (result) {
       return res.status(200).json({
         message: 'Successfully updated candidate',
