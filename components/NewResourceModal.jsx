@@ -1,14 +1,9 @@
-import { Button, Group, Modal, Textarea, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { useMutation, useQueryClient } from 'react-query';
+import { Button, Group, Modal, Textarea, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { useMutation, useQueryClient } from 'react-query'
 
-export default function NewResourceModal({
-  isOpen,
-  onClose,
-  type,
-  title,
-}) {
-  const client = useQueryClient();
+export default function NewResourceModal({ isOpen, onClose, type, title }) {
+  const client = useQueryClient()
   const mutation = useMutation(
     async (body) => {
       await fetch(`/api/${type}`, {
@@ -21,11 +16,11 @@ export default function NewResourceModal({
     },
     {
       onSuccess: () => {
-        client.refetchQueries();
-        onClose();
-      }
+        client.refetchQueries()
+        onClose()
+      },
     }
-  );
+  )
 
   const form = useForm({
     initialValues: {

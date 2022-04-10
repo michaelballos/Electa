@@ -1,55 +1,15 @@
-import {
-  AppShell,
-  Box,
-  Divider,
-  Header,
-  Title,
-  Navbar,
-  Stack,
-  Text as MantineText,
-  Multiselect,
-  Grid,
-  Space,
-} from '@mantine/core'
-import { Card, Group } from '@mantine/core'
+import { Title, Stack, Text as MantineText, Grid } from '@mantine/core'
+import { Card } from '@mantine/core'
 import withParentSize from '@visx/responsive/lib/enhancers/withParentSizeModern'
 import Chart from '../components/Chart'
 import Graph from '../components/Graph'
 import TableWrapper from '../components/TableWrapper'
 import { useState } from 'react'
-
-/*
-    <Box
-      sx={
-        (theme) => ({
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'nowrap',
-          backgroundColor: theme.colors.blue[1],
-        })
-      }
-    >
-      <Stack>
-        <Stack>
-          <Title order={1}>Electa API</Title>
-          <Title order={2}>Automate Delegation</Title>
-          <Divider />
-        </Stack>
-        <Container size="lg">
-          <TableWrapper />
-        </Container>
-      </Stack>
-      <Stack>
-        <Stack>
-          <Title order={3}>System Graph</Title>
-          <Graph />
-        </Stack>
-      </Stack>
-    </Box>
-*/
+import { useCallback } from 'react'
 
 export default function HomePage() {
   const [opened, setOpened] = useState(false)
+  const openSesame = useCallback(() => setOpened(), [])
 
   return (
     <Grid>
@@ -61,7 +21,7 @@ export default function HomePage() {
           }}
         >
           <Title order={3}>Inspector</Title>
-          <TableWrapper onClick={() => setOpened()} />
+          <TableWrapper onClick={openSesame} />
         </Card>
       </Grid.Col>
       <Grid.Col md={5} lg={4} xl={3} sm={12}>
