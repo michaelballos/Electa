@@ -6,28 +6,27 @@ import LoginButtons from '../components/LoginButtons'
 
 const Login = () => {
   const [opened, setOpened] = useState(false)
+
   return (
-    <>
-      <Center
+    <Center
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      <div
         style={{
-          width: '100%',
-          height: '100%',
+          width: 340,
+          margin: 'auto',
         }}
       >
-        <div
-          style={{
-            width: 340,
-            margin: 'auto',
-          }}
-        >
-          <Card shadow='sm' p='lg'>
-            <LoginUI />
-            <Register opened={opened} setOpened={setOpened} />
-            <LoginButtons opened={opened} setOpened={setOpened} />
-          </Card>
-        </div>
-      </Center>
-    </>
+        <Card shadow='sm' p='lg'>
+          <LoginUI />
+          <Register opened={opened} setOpened={setOpened} />
+          <LoginButtons opened={opened} setOpened={setOpened} />
+        </Card>
+      </div>
+    </Center>
   )
 }
 

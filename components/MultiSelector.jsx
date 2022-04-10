@@ -1,9 +1,16 @@
 import { MultiSelect } from '@mantine/core'
 
 const MultiSelector = () => {
-  const data = Array(50)
-    .fill(0)
-    .map((_, index) => `Item ${index}`)
+  const data = [
+    {
+      id: 1,
+      name: 'Item 1',
+    },
+    {
+      id: 2,
+      name: 'Item 2',
+    },
+  ]
 
   return (
     <MultiSelect
